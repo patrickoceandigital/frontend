@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Point bizarre
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tout est là. La seule définition pas rapport est la défintion du ingress que j'ai mis dans le project frontend.
 
-## Available Scripts
+## La seule chose a faire pour que ca puisse rouler sur un cluster tout neuf c'est de setter le token du cluster de Ocean Digital
 
-In the project directory, you can run:
+La litérature est directement sur le Cluster, tu te download la config et le token y est.
 
-### `yarn start`
+### Les étapes sont simples
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Tu roule le workflow de chaque projet:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- frontend
+- backend
+- mysql
 
-### `yarn test`
+Ceci déclanche les étapes nécessaire a déployer l'application sur un cluster Ocean Digital qui sont brièvement les suivantes:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Builder l'image
+Pousser l'image sur Docker Hub
+Déployer l'image sur Ocean Digital et la configurer
 
-### `yarn build`
+### Points à améliorer
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Faire fonctionner le delete du UI
+- Créer des workflow pour un environement DEV et un environnement PROD
+- Créer un projet infrastructure qui contient la définition de la BD mysql et de Ingress
+- Renommer les projet avec des noms plus générique:
+    frontend-od
+    backend-od
+    infra-od
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Refaire la même chose mais cette fois sur Google Cloud et Amazon.
