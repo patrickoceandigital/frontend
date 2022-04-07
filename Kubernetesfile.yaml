@@ -34,3 +34,53 @@ spec:
   type: ClusterIP
   selector:
     app: frontend
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fullingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    #nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS, DELETE"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "false"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "http://idyllwildsoft.com"
+    nginx.ingress.kubernetes.io/ingress.allow-http: "true"
+   
+spec:
+  rules:
+  - host: "idyllwildsoft.com"
+    http:
+      paths:
+        - path:  /*
+          pathType: Prefix
+          backend:
+             service:
+              name: frontend
+              port:
+                number: 80
+        - path:  /home
+          pathType: Prefix
+          backend:
+             service:
+              name: backendservice
+              port:
+                name: backendport
+        - path: /api/*
+          pathType: Prefix
+          backend:
+             service:
+              name: backendservice
+              port:
+                name: backendport
+        - path: /customers/*
+          pathType: Prefix
+          backend:
+             service:
+              name: backendservice
+              port:
+                name: backendport
