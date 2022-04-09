@@ -13,7 +13,7 @@ const CustomerHook = (props) => {
         CustomerService.getAllCustomers().then((res) => {
             setCustomers(res.data);
         })
-    },[])
+    },[customers.length])
 
     const addCustomer = (() => {
         console.log('le pathname de addCustomer est  = ' + history.location.pathname); 
@@ -28,10 +28,17 @@ const CustomerHook = (props) => {
     const deleteCustomer = ((id) => {
         console.log('entre deleteCustomer avec id = ' + id);
         CustomerService.deleteCustomer(id).then((res) => {
-            console.log('le pathname est  = ' + history.location.pathname); 
-            history.push('/home');
+            readCustomer();
+            props.history.push('/customers');
         });
     });
+
+    const readCustomer = (() => {
+        CustomerService.getAllCustomers().then((res) => {
+            setCustomers(res.data);
+        })
+    });
+
 
     return (
         <div>
