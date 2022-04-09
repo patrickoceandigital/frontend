@@ -36,6 +36,7 @@ const CustomerHook = (props) => {
     const readCustomer = (() => {
         CustomerService.getAllCustomers().then((res) => {
             setCustomers(res.data);
+            console.log('le size est  = ' + customers.length); 
         })
     });
 
